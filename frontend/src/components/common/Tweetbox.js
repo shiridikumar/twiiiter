@@ -39,7 +39,7 @@ const Tweetbox = (props) => {
         console.log(mentions);
 
         console.log("Sdasdasda");
-        axios.post("http://localhost:4000/user/tweet",{username:props.user.user.user_name,tweettext:tweettext,mentions:mentions,hashtags:hashtags}).then(response=>{
+        axios.post("http://localhost:4000/user/tweet",{name:props.user.user.name,username:props.user.user.user_name,tweettext:tweettext,mentions:mentions,hashtags:hashtags}).then(response=>{
             console.log(response.data);
             window.location.reload();
         }).catch(err=>{

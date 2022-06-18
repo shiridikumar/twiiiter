@@ -21,6 +21,7 @@ router.post("/tweet", (req, res) => {
     console.log("hashtags");
 }
    const post=new posts({
+       name:req.body.name,
        tweettext:req.body.tweettext,
        url:"",
        timestamp:Date.now(),

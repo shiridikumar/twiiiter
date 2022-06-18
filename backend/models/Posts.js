@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const PostSchema = new Schema({
+    name:{
+        type:String
+    },
 	username: {
 		type: String,
 		required: true

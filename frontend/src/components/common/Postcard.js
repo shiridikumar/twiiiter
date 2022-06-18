@@ -52,13 +52,14 @@ const Postcard = (props) => {
             <div className={classes.cardcontent}>
                 <div className={classes.userdetails}>
                     <h6 style={{fontWeight:"bolder",marginRight:"5px"}}>{props.name}</h6>
-                    <h6 style={{fontWeight:"normal" ,color:"grey"}}> {props.user_name} </h6>
+                    <h6 style={{fontWeight:"normal" ,color:"grey"}}> @{props.user_name} </h6>
                 </div>
                 <p className="card-texasdt">{props.tweettext}</p>
                 {/*<div className={classes.attach}>
                     <img src={require("./../img/rrr.jpeg")} className={classes.card} alt="..." />
                 </div>*/}
             </div>
+            
         </div>
     )
 }
