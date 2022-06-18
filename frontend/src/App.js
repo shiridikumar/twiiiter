@@ -6,6 +6,8 @@ import Home from "./components/common/Home";
 import Register from "./components/common/Register";
 import Navbar from "./components/templates/Navbar";
 import Profile from "./components/users/Profile";
+import { useState } from "react";
+import Login from "./components/common/Login";
 
 const Layout = () => {
   return (
@@ -19,14 +21,21 @@ const Layout = () => {
 };
 
 function App() {
+
+  const [user, setLoginUser] = useState({})
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}/>
-          <Route path="/home" element={<Home />} />
-          <Route path="/users" element={<UsersList />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={(() => {
+          console.log(user)
+          if(user && user.user_name){
+            return <Home/>
+          }else{
+            return <Login setLoginUser={setLoginUser}/>
+          }
+        })()}/>
+        <Route path="/home" element={<Home />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
