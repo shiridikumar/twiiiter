@@ -10,7 +10,7 @@ import "./../components.css"
 import Menu from "./Menu";
 import Postcard from "./Postcard";
 import Timeline from "./Timeline";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 
 // import { fontSize } from "@mui/system";
 
@@ -30,20 +30,28 @@ const Home = (props) => {
       borderLeft:"2px solid rgb(239, 243, 244)",
       borderRight:"2px solid rgb(239, 243, 244)",
       paddingTop:"30px",
-  
     }
   }))
+  const location=useLocation();
+  const navigate=useNavigate();
+  console.log(location.state);
+  useEffect(()=>{
+    if(location.state==null){
+      navigate("/login")
+      console.log("asdasdasdasda");
+    }
+  },[])
+  
   const user=props.user;
 
   const classes=mystyles();
   return (
     <div className={classes.home}>
-      <Menu user={user}/>
+      <Menu user={location.state}/>
       <Timeline/>
       <Menu/>
     </div>
 
   )
 };
-
 export default Home;

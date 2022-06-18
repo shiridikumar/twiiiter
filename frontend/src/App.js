@@ -38,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={(() => {
+        {/* <Route path="/" element={(() => {
           console.log(user)
           if(user && user.user_name){
             console.log(user);
@@ -46,7 +46,9 @@ function App() {
           }else{
             return <Login setLoginUser={setLoginUser}/>
           }
-        })()}/>
+        })()}/> */}
+         <Route path="/login" element={<Login />} /> 
+        <Route path="/" element={<Home />} /> 
         <Route path="/home" element={<Home />} /> {/* This has to be commented in the end */}
         <Route path="/register" element={<Register />} />
       </Routes>

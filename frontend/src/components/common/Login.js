@@ -6,7 +6,7 @@ import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 
-const Login = ({setLoginUser}) => {
+const Login = () => {
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -28,8 +28,8 @@ const Login = ({setLoginUser}) => {
             axios.post("http://localhost:4000/user/login", user)
             .then(res => {
                 alert(res.data.message)
-                setLoginUser(res.data.user);
-                navigate("/",{state:{user:res.data.user}})
+                // setLoginUser(res.data.user);
+                navigate("/home",{state:{user:res.data.user}})
             })
         }else{
             if(!email && password){
