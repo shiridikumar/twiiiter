@@ -5,6 +5,8 @@ var router = express.Router();
 const User = require("../models/Users");
 const posts=require("../models/Posts");
 
+const postsAPI = require('./Posts');
+router.use("/posts", postsAPI);
 
 
 router.post("/tweet", (req, res) => {

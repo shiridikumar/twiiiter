@@ -9,7 +9,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import "./../components.css"
 import Menu from "./Menu";
 
-const Postcard = () => {
+const Postcard = (props) => {
     const mystyles = makeStyles(theme => ({
         card: {
             maxWidth: "400px",
@@ -51,15 +51,13 @@ const Postcard = () => {
             </div>
             <div className={classes.cardcontent}>
                 <div className={classes.userdetails}>
-                    <h6 style={{fontWeight:"bolder",marginRight:"5px"}}>shiridiKumar</h6>
-                    <h6 style={{fontWeight:"normal" ,color:"grey"}}>  @kumar_skp</h6>
+                    <h6 style={{fontWeight:"bolder",marginRight:"5px"}}>{props.name}</h6>
+                    <h6 style={{fontWeight:"normal" ,color:"grey"}}> {props.user_name} </h6>
                 </div>
-                <p className="card-texasdt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit neque voluptate tenetur maxime, laboriosam natus, dolorem, soluta distinctio quas optio quasi dolor nisi beatae libero eveniet eos perferendis unde dolore!</p>
-                <div className={classes.attach}>
+                <p className="card-texasdt">{props.tweettext}</p>
+                {/*<div className={classes.attach}>
                     <img src={require("./../img/rrr.jpeg")} className={classes.card} alt="..." />
-                </div>
-
-              
+                </div>*/}
             </div>
         </div>
     )
