@@ -38,6 +38,9 @@ const Home = (props) => {
   useEffect(()=>{
     if(location.state==null){
       navigate("/login")
+      axios.get("http://localhost:4000/user/posts/posts").then(response=>{
+
+      });
       console.log("asdasdasdasda");
     }
   },[])
