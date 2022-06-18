@@ -23,7 +23,7 @@ const PostSchema = new Schema({
         type:[String],
         required:false
     },
-    hashtage:{
+    hashtags:{
         type:[String],
         required:false
     }

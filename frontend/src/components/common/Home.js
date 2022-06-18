@@ -10,6 +10,7 @@ import "./../components.css"
 import Menu from "./Menu";
 import Postcard from "./Postcard";
 import Timeline from "./Timeline";
+import { useLocation } from "react-router-dom";
 
 // import { fontSize } from "@mui/system";
 
@@ -32,10 +33,12 @@ const Home = (props) => {
   
     }
   }))
+  const user=props.user;
+
   const classes=mystyles();
   return (
     <div className={classes.home}>
-      <Menu />
+      <Menu user={user}/>
       <Timeline/>
       <Menu/>
     </div>

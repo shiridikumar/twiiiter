@@ -10,7 +10,7 @@ import "./../components.css"
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Tweetbox from "./Tweetbox";
 
-const Menu = () => {
+const Menu = (props) => {
     const mystyles = makeStyles(theme => ({
         wrapicon: {
             display: "inline-flex",
@@ -36,6 +36,7 @@ const Menu = () => {
             padding: "10px"
         },
     }))
+    const user=props.user;
     const classes = mystyles();
     const firebaseConfig = {
         apiKey: "AIzaSyBPG8FQXhcRMfK-iosurtFAMb9wxBllLO8",
@@ -92,7 +93,7 @@ const Menu = () => {
                             </button>
                         </li>
                         <br/>
-                        <Tweetbox/>
+                        <Tweetbox user={user}/>
 
                     </ul>
                 </div>

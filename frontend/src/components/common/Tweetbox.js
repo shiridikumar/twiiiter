@@ -9,7 +9,8 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import "./../components.css"
 import axios from "axios";
 
-const Tweetbox = () => {
+const Tweetbox = (props) => {
+    console.log(props)
     const mystyles = makeStyles(theme => ({
         but: {
             backgroundColor: "rgb(29, 155, 240)"
@@ -38,15 +39,14 @@ const Tweetbox = () => {
         console.log(mentions);
 
         console.log("Sdasdasda");
-        axios.post("http://localhost:4000/user/tweet",{username:"shiridikumar",tweettext:tweettext,mentions:mentions,hashtags:hashtags}).then(response=>{
+        axios.post("http://localhost:4000/user/tweet",{username:props.user.user_name,tweettext:tweettext,mentions:mentions,hashtags:hashtags}).then(response=>{
             console.log(response.data);
+            window.location.reload();
         }).catch(err=>{
             console.log(err);
         })
     }
     return (
-
-
         <>
             <button className={classes.but} data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ backgroundColor: "rgb(29, 155, 240)" }}>Tweet</button>
 
