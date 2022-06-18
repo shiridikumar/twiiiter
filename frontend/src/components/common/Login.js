@@ -46,7 +46,6 @@ const Login = ({setLoginUser}) => {
     }
     return (
         <div className='login'>
-            {console.log(user)}
             <center>
                 <h1>Login</h1>
                 <TextField type={"text"} name = "email" value = {user.email} onChange={change_handler} placeholder='Enter your email' /><br></br><br></br>
