@@ -30,8 +30,15 @@ const Tweetbox = () => {
     const [tweettext,settext]=useState("");
     const classes = mystyles();
     const tweet=()=>{
+
+        let text = tweettext;
+        var hashtags=text.match(/#[a-zA-Z0-9]+/gi);
+        var mentions=text.match(/@[a-zA-Z0-9]+/gi);
+        console.log(hashtags);
+        console.log(mentions);
+
         console.log("Sdasdasda");
-        axios.post("http://localhost:4000/user/tweet",{username:"shiridikumar",tweettext:tweettext}).then(response=>{
+        axios.post("http://localhost:4000/user/tweet",{username:"shiridikumar",tweettext:tweettext,mentions:mentions,hashtags:hashtags}).then(response=>{
             console.log(response.data);
         }).catch(err=>{
             console.log(err);
@@ -47,7 +54,7 @@ const Tweetbox = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <TextField
@@ -69,7 +76,6 @@ const Tweetbox = () => {
                             />
                         </div>
                         <div className="modal-footer">
-
                             <button type="button" className={classes.but} style={{ backgroundColor: "rgb(29, 155, 240)",width:"100px",fontSize:"15px" }} onClick={()=>tweet()}>Tweet</button>
                         </div>
                     </div>

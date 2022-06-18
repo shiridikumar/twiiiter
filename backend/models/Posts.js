@@ -18,6 +18,14 @@ const PostSchema = new Schema({
     url:{
         type:String,
         required:false
+    },
+    mentions:{
+        type:[String],
+        required:false
+    },
+    hashtage:{
+        type:[String],
+        required:false
     }
 });
 
