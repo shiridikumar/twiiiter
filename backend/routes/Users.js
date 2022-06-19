@@ -174,6 +174,24 @@ router.post("/login", (req, res) => {
     })
 })
 
+router.post("/follow", async (req, res) => {
+   To_follow = req.body.to_follow;
+   from_user = req.body.from_user;
+   
+   await User.updateOne({ user_name: from_user }, { $push: { following: To_follow } }, (err, res1) => {
+       if(err){
+           res.status(400).send({ message: err })
+       }
+    })
+
+    await User.updateOnet({ user_name: To_follow }, { $push: { followers: from_user } }, (err, res2) => {
+        if(err){
+            res.status(400).send({ message: err })
+        }
+    })
+
+    res.status(200).send({message: "succesful"})
+})
 
 module.exports = router;
 
