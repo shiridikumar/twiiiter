@@ -40,37 +40,41 @@ router.post("/tweet", async (req, res) => {
     })
         .catch(err => {
             console.log(err);
-            
-        })
 
+        })
+    let vis = {};
     for (var i = 0; i < hashtags.length; i++) {
-        let tag =hashtags[i];
-        await hash.findOne({ hash_tag: tag }, async (err, res1) => {
-            if (res1) {
-                console.log(tag);
-                await hash.updateOne({ hash_tag: tag }, { $set: { counts: res1.counts + 1 } }, (err, res2) => {
-                    console.log(res2);
-                })
-            }
-            else {
-                console.log("hellllllllo");
-                const newhash = new hash({
-                    hash_tag: tag,
-                    timestamps: Date.now(),
-                    counts: 1
-                });
-                await newhash.save().then(res1 => {
-                    console.log("succesdasdasdasdasda");
-                   
-                })
-                    .catch(err => {
-                        console.log(err);
-                        res.send("unsuccesful");
+        let tag = hashtags[i];
+        if (!(vis.hasOwnProperty(tag))) {
+            vis[tag] = 1;
 
-                    });
+            await hash.findOne({ hash_tag: tag }, async (err, res1) => {
+                if (res1) {
+                    console.log(tag);
+                    await hash.updateOne({ hash_tag: tag }, { $set: { counts: res1.counts + 1 } }, (err, res2) => {
+                        console.log(res2);
+                    })
                 }
-            
-        })
+                else {
+                    console.log("hellllllllo");
+                    const newhash = new hash({
+                        hash_tag: tag,
+                        timestamps: Date.now(),
+                        counts: 1
+                    });
+                    await newhash.save().then(res1 => {
+                        console.log("succesdasdasdasdasda");
+
+                    })
+                        .catch(err => {
+                            console.log(err);
+                            res.send("unsuccesful");
+
+                        });
+                }
+
+            })
+        }
 
     }
     res.send("successful");
