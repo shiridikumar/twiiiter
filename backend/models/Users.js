@@ -34,6 +34,10 @@ const user_schema = new Schema({
 		type: String,
 	}, bio:{
 		type: String,
+	}, followers:{
+		type: Array,
+	}, following:{
+		type: Array
 	} 
 })
 
