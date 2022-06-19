@@ -82,9 +82,9 @@ const Menu = (props) => {
                             </button>
                         </li>
                         <li className={classes.item}>
-                            <button className={classes.menubutton}>
+                            <button className={classes.menubutton} onClick={()=>{navigate("/profile",{state:{user:user}})}}>
                                 <Typography variant="h5" className={classes.wrapicon}>
-                                    <PersonIcon className={classes.iconclass}  style={{fontSize:"35px"}} /> Profile
+                                    <PersonIcon className={classes.iconclass}  style={{fontSize:"35px"}}  /> Profile
                                 </Typography>
                             </button>
                         </li>

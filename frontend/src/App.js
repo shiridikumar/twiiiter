@@ -5,11 +5,12 @@ import UsersList from "./components/users/UsersList";
 import Home from "./components/common/Home";
 import Register from "./components/common/Register";
 import Navbar from "./components/templates/Navbar";
-import Profile from "./components/users/Profile";
+// import Profile from "./components/users/Profile";
 import Login from './components/common/Login'
 import { useState } from "react";
 import Timeline from "./components/common/Timeline";
 import { HashRecord_list_comp } from "./components/common/Trending";
+import Profile from "./components/common/Profile";
 
 const Layout = () => {
   return (
@@ -36,6 +37,7 @@ function App() {
   //   </BrowserRouter>
   // );
   const [user, setLoginUser] = useState({})
+  
 
   return (
     <BrowserRouter>
@@ -49,12 +51,16 @@ function App() {
             return <Login setLoginUser={setLoginUser}/>
           }
         })()}/> */}
+
          <Route path="/login" element={<Login />} /> 
         <Route path="/" element={<Home />} /> 
+        
+      
         <Route path="/home" element={<Home />} /> {/* This has to be commented in the end */}
         <Route path="/register" element={<Register />} />
         <Route path="/explore" element={<HashRecord_list_comp />} />
         <Route path="/explore/:hashtag" element={<Timeline type="HASHTAG"/>} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

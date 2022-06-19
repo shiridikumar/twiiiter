@@ -41,7 +41,7 @@ const Tweetbox = (props) => {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                "name": props.user.user.name,
+                "name": props.user.name,
                 'Content-Type': "multipart/form-data",
 
             }

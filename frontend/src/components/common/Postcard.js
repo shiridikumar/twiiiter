@@ -47,7 +47,7 @@ const Postcard = (props) => {
     return (
         <div className={classes.postcard}  >
             <div className={classes.profilepic}>
-                <Avatar alt="profile-pic" src={require("./../img/temp.jpg")} />
+                <Avatar alt="profile-pic" src={require("./../img/download.png")} />
             </div>
             <div className={classes.cardcontent}>
                 <div className={classes.userdetails}>
