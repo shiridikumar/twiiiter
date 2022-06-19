@@ -46,13 +46,15 @@ router.post("/tweet", async (req, res) => {
     console.log(req.body);
     let mentions = [];
     let hashtags = [];
-    if (req.body.hasOwnProperty("mentions") && req.body.mentions != null) {
+
+    if (req.body.hasOwnProperty("mentions") && req.body.mentions!=null) {
         mentions = req.body.mentions;
     }
-    if (req.body.hasOwnProperty("hashtags") && req.body.hashtags != null) {
+    if (req.body.hasOwnProperty("hashtags") && req.body.hashtags!=null) {
         hashtags = req.body.hashtags;
         console.log("hashtags");
     }
+
     console.log(hashtags);
     const post = new posts({
         name: req.body.name,

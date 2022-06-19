@@ -36,6 +36,7 @@ const Home = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   console.log(location.state);
+  
 
   
   useEffect(() => {
@@ -47,11 +48,15 @@ const Home = (props) => {
   }, [])
 
   const user = props.user;
+  console.log(location.state);
 
   const classes = mystyles();
   return (
     <div className={classes.home}>
-      <Menu user={location.state} />
+      {/* <div className="left" style={{position:"fixed",justifyContent:"flex-start"}}> */}
+        <Menu {...location.state} />
+      {/* </div> */}
+
       <Timeline type="ALL"/>
       <Menu />
     </div>
