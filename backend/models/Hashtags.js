@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const hashtags_schema = new Schema({
-    hashtag:{
+    hash_tag:{
         type:String,
         required:true
     }, counts:{
@@ -11,7 +11,7 @@ const hashtags_schema = new Schema({
         default:0
     }, timestamps:{
         type: Array,
-        required: True,
+        required: true,
         default: []
     }
 })

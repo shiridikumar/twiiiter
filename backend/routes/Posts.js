@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+const hashtags= require("./../models/Hashtags")
 
 const Posts = require('./../models/Posts');
 
