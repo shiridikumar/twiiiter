@@ -60,6 +60,7 @@ const Timeline = (params) => {
       }
       <div className={classes.timeline}>
         <h5 style={{ padding: "20px" }}>Home</h5>
+        <hr style={{color:"grey"}}/>
         <ul style={{ paddingLeft: "0px" }}>
           {cont}
         </ul>
@@ -74,6 +75,7 @@ const Timeline = (params) => {
       params.type != "HASHTAG" &&
       <div className={classes.timeline}>
         <h5 style={{ padding: "20px" }}>Home</h5>
+        <hr style={{color:"grey"}}/>
         <ul style={{ paddingLeft: "0px" }}>
           {cont}
         </ul>

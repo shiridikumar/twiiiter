@@ -22,11 +22,25 @@ const Profile = () => {
         },
     }))
     const classes = mystyles();
+    const user=location.state.user;
+    useEffect(()=>{
+       
+    },[])
 
     return (
         <div className={classes.profile}>
             <Menu {...location.state} />
-            <Timeline type="ALL" />
+            <div className="middle" style={{width:"35%"}}>
+                <div className="header" style={{display:"flex",flexDirection:"column",alignItems:"center"}} >
+                    <div className="wall" style={{backgroundColor: "grey", height: "100px" }}>
+                    </div>
+
+                    <img src={require("./../img/download.png")} style={{marginTop:"-10px"}}/>
+                    <h3>{user.name}</h3>
+                    <h4 style={{color:"grey"}}>@{user.user_name}</h4>
+                </div>
+                <Timeline type="ALL" />
+            </div>
             <Menu {...location.state} />
 
         </div>
