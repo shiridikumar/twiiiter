@@ -14,4 +14,18 @@ router.get("/posts", (req, res) => {
     })
 })
 
+router.get("/trendinghashtags", (req, res) => {
+    hashtags.find({}, (err, hashtags) => {
+        if(err){
+            res.status(400).send({message: err, hashtags: null})
+            return;
+        }
+        //sort hashtags by counts
+        hashtags.sort((a, b) => {
+            return (b.counts - a.counts)
+        })
+        res.status(200).send({message: "Hashtags Successfully Gathered", hashtags: hashtags})
+    })   
+})
+
 module.exports = router;
