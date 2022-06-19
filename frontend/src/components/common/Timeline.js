@@ -40,7 +40,7 @@ const Timeline = (params) => {
     }
     else if(params.type=="user"){
       api_link="http://localhost:4000/user/posts/userid/";
-      api_link+=params.username;
+      // api_link+=params.username;
     }
     else
       console.log("invalid parameters")
