@@ -14,31 +14,31 @@ const Postcard = (props) => {
         card: {
             maxWidth: "400px",
             maxHeight: "600px",
-            borderRadius:"10px"
+            borderRadius: "10px"
         },
-        userdetails:{
-            display:"flex",
-            flexDirection:"row",
+        userdetails: {
+            display: "flex",
+            flexDirection: "row",
             // justifyContent:"center",
 
-            alignItems:"center"
+            alignItems: "center"
         },
-        postcard:{
-            display:"flex",
-            flexDirection:"row",
-            padding:"25px"
+        postcard: {
+            display: "flex",
+            flexDirection: "row",
+            padding: "25px"
             // borderBottom:"2px solid rgb(239, 243, 244)"
         },
-        cardcontent:{
-            display:"flex",
-            flexDirection:"column",
-            paddingLeft:"10px",
-            paddingRight:"10px",
+        cardcontent: {
+            display: "flex",
+            flexDirection: "column",
+            paddingLeft: "10px",
+            paddingRight: "10px",
         },
-        attach:{
-            display:"flex",
-            flexDirection:"column",
-            alignItems:"center"
+        attach: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
 
         },
     }))
@@ -51,15 +51,17 @@ const Postcard = (props) => {
             </div>
             <div className={classes.cardcontent}>
                 <div className={classes.userdetails}>
-                    <h6 style={{fontWeight:"bolder",marginRight:"5px"}}>{props.name}</h6>
-                    <h6 style={{fontWeight:"normal" ,color:"grey"}}> @{props.user_name} </h6>
+                    <h6 style={{ fontWeight: "bolder", marginRight: "5px" }}>{props.name}</h6>
+                    <h6 style={{ fontWeight: "normal", color: "grey" }}> @{props.user_name} </h6>
                 </div>
                 <p className="card-texasdt">{props.tweettext}</p>
-                {/*<div className={classes.attach}>
-                    <img src={require("./../img/rrr.jpeg")} className={classes.card} alt="..." />
-                </div>*/}
+                {props.url != "" &&
+                    <div className={classes.attach}>
+                        <img src={props.url} className={classes.card} alt="..." />
+                    </div>
+                }
             </div>
-            
+
         </div>
     )
 }

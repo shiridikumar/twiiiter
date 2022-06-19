@@ -26,7 +26,7 @@ const Timeline = () => {
       const data=response.data.posts;
       console.log(data);
       for(var i=0;i<response.data.posts.length;i++){
-        row.push(<><Postcard name={data[i].name} user_name={data[i].username} tweettext={data[i].tweettext}/><hr style={{color:"grey"}}/></>);
+        row.push(<><Postcard name={data[i].name} user_name={data[i].username} tweettext={data[i].tweettext} url={data[i].url}/><hr style={{color:"grey"}}/></>);
       }
     })
     setcont(row);
