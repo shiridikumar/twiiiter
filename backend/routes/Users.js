@@ -46,10 +46,10 @@ router.post("/tweet", async (req, res) => {
     console.log(req.body);
     let mentions = [];
     let hashtags = [];
-    if (req.body.hasOwnProperty("mentions")) {
+    if (req.body.hasOwnProperty("mentions") && req.body.mentions != null) {
         mentions = req.body.mentions;
     }
-    if (req.body.hasOwnProperty("hashtags")) {
+    if (req.body.hasOwnProperty("hashtags") && req.body.hashtags != null) {
         hashtags = req.body.hashtags;
         console.log("hashtags");
     }
@@ -125,7 +125,12 @@ router.post("/register", (req, res) => {
         email: req.body.email,
         password: req.body.password,
         interests: req.body.interests,
-        phone_number: req.body.phone_number
+        phone_number: req.body.phone_number,
+        joining_year: req.body.joining_year,
+        predicted_grad_year: req.body.predicted_grad_year,
+        course: req.body.course,
+        relationship_status: req.body.relationship_status,
+        bio: req.body.bio
     })
     var temp = req.body.email.split("@")
     if (temp.length != 2) {

@@ -21,7 +21,17 @@ const user_schema = new Schema({
 	}, phone_number:{
 		type: String,
 		default: []
-	}
+	}, joining_year:{
+		type: Number
+	}, predicted_grad_year:{
+		type: Number
+	}, course:{
+		type: String,
+	}, relationship_status:{
+		type: String,
+	}, bio:{
+		type: String,
+	} 
 })
 
 module.exports = User = mongoose.model("User", user_schema);
