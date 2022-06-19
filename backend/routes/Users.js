@@ -200,8 +200,6 @@ router.post("/follow", async (req, res) => {
 router.post("/unfollow", async (req, res) => {
     To_unfollow = req.body.to_unfollow;
     from_user = req.body.from_user;
-
-
     await User.findOne({ user_name: from_user }, (err, user) => {
         if (err) {
             res.status(400).send({ message: err });
@@ -228,6 +226,17 @@ router.post("/getfollowing", async (req, res) => {
             res.status(400).send({ message: err });
         }
         res.status(200).send({ following: user.following })
+    })
+})
+
+router.post("/getallusers",(req,res)=>{
+    User.find({},(err,users)=>{
+        if(err){
+            res.send("error");
+        }
+        else{
+            res.send(users);
+        }
     })
 })
 

@@ -25,6 +25,9 @@ const Profile = () => {
     const user=location.state.user;
     const row=[]
     const [cont,setcont]=useState();
+    const [flag,setflag]=useState(0);
+    
+    
     const display=["bio","predicted_grad_year","joining_year","course","relationship_status","email"]
     useEffect(()=>{
         for(const item in display){
@@ -39,6 +42,8 @@ const Profile = () => {
 
         }
         setcont(row);
+        
+        
     },[])
 
     return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import HomeIcon from '@mui/icons-material/Home';
-import { Button, Icon, Typography } from "@mui/material";
+import { Button, Icon, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import "./../components.css"
 import Postcard from "./Postcard";
@@ -65,15 +65,53 @@ const Timeline = (params) => {
   }
     setcont(row);
   }, []);
+ 
+  const [filters,setfilter]=useState([]);
+  const [search,setsearch]=useState();
+  const gotoprofile=(e)=>{
+   
+    console.log(e);
+    // if(flag==0){
+    navigate("/profile",{state:{user:allusers[e.target.id]}})
+    window.location.reload();
+  }
+  const searchhandle= (e)=>{
+    setsearch(e.target.value);
+    let filtrow=[];
+    for(var i=0;i<allusers.length;i++){
+      console.log(e.target.value);
+      console.log(allusers[i].user_name);
 
+      if(allusers[i].user_name.includes(e.target.value)){
+        let userid=allusers[i].user_name;
+        filtrow.push(<a onClick={(e)=>{gotoprofile(e)}}><h4 id={i} >{ allusers[i].user_name}</h4></a>);
+      }
+    }
+    // filtrow.push()
+    setfilter(filtrow);
+
+  }
+  const [allusers,setall]=useState([]);
+  const getallusers=(e)=>{
+    axios.post("http://localhost:4000/user/getallusers",{}).then(response=>{
+      console.log(response.data);
+      setall(response.data);
+    })
+  }
   return (
     <>
     {params.type == "HASHTAG" &&
     <div className="tl" style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
+     
       {params.type == "HASHTAG" &&
         <Menu {...location.state} />
       }
       <div className={classes.timeline}>
+      <div className="searchbar" style={{padding:"25px"}}>
+        <TextField fullWidth label="search" id="fullWidth" variant="standard" onClick={getallusers} onChange={searchhandle}/>
+        <a onClick={()=>{setfilter([])}}>clear</a>
+        {filters}
+        </div>
         <h5 style={{ padding: "20px" }}>Home</h5>
         <hr style={{color:"grey"}}/>
         <ul style={{ paddingLeft: "0px" }}>
@@ -89,6 +127,12 @@ const Timeline = (params) => {
     {
       params.type != "HASHTAG" &&
       <div className={classes.timeline}>
+        <div className="searchbar" style={{padding:"25px"}}>
+        <TextField fullWidth label="search" id="fullWidth" variant="standard" onClick={getallusers} onChange={searchhandle}/>
+        <a onClick={()=>{setfilter([])}}>clear</a>
+        {filters}
+        </div>
+         
         <h5 style={{ padding: "20px" }}>Home</h5>
         <hr style={{color:"grey"}}/>
         <ul style={{ paddingLeft: "0px" }}>
