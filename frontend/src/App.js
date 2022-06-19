@@ -54,6 +54,7 @@ function App() {
         <Route path="/home" element={<Home />} /> {/* This has to be commented in the end */}
         <Route path="/register" element={<Register />} />
         <Route path="/explore" element={<HashRecord_list_comp />} />
+        <Route path="/explore/:hashtag" element={<Timeline type="HASHTAG"/>} />
       </Routes>
     </BrowserRouter>
   );

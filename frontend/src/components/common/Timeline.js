@@ -5,8 +5,9 @@ import { makeStyles } from "@mui/styles";
 import "./../components.css"
 import Postcard from "./Postcard";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const Timeline = () => {
+const Timeline = (params) => {
     
     const mystyles=makeStyles(theme=>({
         timeline:{
@@ -21,8 +22,23 @@ const Timeline = () => {
       const row=[];
   const [cont,setcont]=useState();
   
+  let {hashtag} = useParams();
+
   useEffect(async() => {
-    await axios.get("http://localhost:4000/user/posts/posts").then(response => {
+    var api_link
+
+    if(params.type == "ALL")
+      api_link = "http://localhost:4000/user/posts/posts"
+    else if(params.type == "HASHTAG")
+    {
+      api_link = "http://localhost:4000/user/posts/hashtag/"
+      console.log(hashtag)
+      api_link+= hashtag
+    }
+    else
+      console.log("invalid parameters")
+
+    await axios.get(api_link).then(response => {
       const data=response.data.posts;
       console.log(data);
       for(var i=0;i<response.data.posts.length;i++){
