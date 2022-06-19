@@ -178,19 +178,56 @@ router.post("/follow", async (req, res) => {
    To_follow = req.body.to_follow;
    from_user = req.body.from_user;
    
-   await User.updateOne({ user_name: from_user }, { $push: { following: To_follow } }, (err, res1) => {
-       if(err){
-           res.status(400).send({ message: err })
-       }
-    })
-
-    await User.updateOnet({ user_name: To_follow }, { $push: { followers: from_user } }, (err, res2) => {
+   await User.findOne({user_name: from_user}, (err, user) =>{
         if(err){
-            res.status(400).send({ message: err })
+            res.status(400).send({message: err});
+        }
+
+        if(user.following.includes(To_follow) == true){
+            res.status(400).send({message: "Already following"});
+        }
+   })
+
+   await User.updateOne({ user_name: from_user }, { $push: { following: To_follow } })
+
+    await User.updateOne({ user_name: To_follow }, { $push: { followers: from_user } })
+
+    res.status(200).send({message: "succesful"})
+})
+
+
+router.post("/unfollow", async (req, res) => {
+    To_unfollow = req.body.to_unfollow;
+    from_user = req.body.from_user;
+
+
+    await User.findOne({ user_name: from_user }, (err, user) => {
+        if (err) {
+            res.status(400).send({ message: err });
+        }
+
+        if (user.following.includes(To_unfollow) == false) {
+            console.log(user.following);
+            res.status(400).send({ message: "Not following" });
         }
     })
 
-    res.status(200).send({message: "succesful"})
+    await User.updateOne({ user_name: from_user }, { $pull: { following: To_unfollow } })
+    await User.updateOne({ user_name: To_unfollow }, { $pull: { followers: from_user } })
+
+    res.status(200).send({ message: "succesful" })
+
+})
+    
+
+router.post("/getfollowing", async (req, res) => {
+    user_name = req.body.user_name;
+    await User.findOne({ user_name: user_name }, (err, user) => {
+        if (err) {
+            res.status(400).send({ message: err });
+        }
+        res.status(200).send({ following: user.following })
+    })
 })
 
 module.exports = router;
