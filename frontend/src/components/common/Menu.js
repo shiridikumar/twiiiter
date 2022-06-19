@@ -9,6 +9,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import "./../components.css"
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Tweetbox from "./Tweetbox";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Menu = (props) => {
     const mystyles = makeStyles(theme => ({
@@ -35,8 +36,11 @@ const Menu = (props) => {
             display: "inline-flex",
             padding: "10px"
         },
+
     }))
+
     const user=props.user;
+    console.log(user);
     const classes = mystyles();
     const firebaseConfig = {
         apiKey: "AIzaSyBPG8FQXhcRMfK-iosurtFAMb9wxBllLO8",
@@ -47,9 +51,8 @@ const Menu = (props) => {
         appId: "1:29898261505:web:fa5b3975dc836480642c00",
         measurementId: "G-60WYWZ8HZG"
       }
-      const upload=()=>{
-
-      }
+     
+      const navigate=useNavigate();
     return (
         <>
             <div style={{marginRight:"20px",paddingTop:"20px"}}>
@@ -57,14 +60,14 @@ const Menu = (props) => {
                     <ul className={classes.menuitems}>
                     <TwitterIcon className={classes.iconclass} style={{fontSize:"35px",margin:"10px"}}/>
                         <li className={classes.item}>
-                            <button className={classes.menubutton} onClick={()=>upload()}>
+                            <button className={classes.menubutton} onClick={()=>navigate("/home",{state:{user:user}})}>
                                 <Typography variant="h5" className={classes.wrapicon}>
                                     <HomeIcon className={classes.iconclass}   style={{fontSize:"35px"}}/> Home
                                 </Typography>
                             </button>
                         </li>
                         <li className={classes.item}>
-                            <button className={classes.menubutton}>
+                            <button className={classes.menubutton} onClick={()=>{navigate("/explore",{state:{user:user}})}}>
                                 <Typography variant="h5" className={classes.wrapicon}>
                                     <TagIcon className={classes.iconclass}  style={{fontSize:"35px"}}/> Explore
                                 </Typography>
