@@ -10,7 +10,7 @@ router.get("/posts", (req, res) => {
             res.status(400).send({message: err, posts: null})
             return;
         }
-        res.status(200).send({message: "Posts Successfully Gathered", posts: posts})
+        res.status(200).send({message: "posts successfully gathered", posts: posts})
     })
 })
 
@@ -26,6 +26,23 @@ router.get("/trendinghashtags", (req, res) => {
         })
         res.status(200).send({message: "Hashtags Successfully Gathered", hashtags: hashtags})
     })   
+})
+
+
+//get all posting containg a given hash
+router.get("/hashtag/:hashtag", (req, res) =>{
+    //console.log(req.params.hashtag)
+    let tag = "#" + req.params.hashtag
+    console.log(tag)
+    Posts.find({hashtags: tag}, (err, posts) => {
+        if(err){
+            res.status(400).send({message: err, posts: null})
+            return;
+        }
+        console.log("working from")
+        console.log(posts)
+        res.status(200).send({message: "posts successfully gathered", posts: posts})
+    })
 })
 
 module.exports = router;

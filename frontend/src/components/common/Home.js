@@ -52,7 +52,7 @@ const Home = (props) => {
   return (
     <div className={classes.home}>
       <Menu user={location.state} />
-      <Timeline />
+      <Timeline type="ALL"/>
       <Menu />
     </div>
 
