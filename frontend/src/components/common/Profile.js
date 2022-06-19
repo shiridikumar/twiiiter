@@ -23,8 +23,22 @@ const Profile = () => {
     }))
     const classes = mystyles();
     const user=location.state.user;
+    const row=[]
+    const [cont,setcont]=useState();
+    const display=["bio","predicted_grad_year","joining_year","course","relationship_status","email"]
     useEffect(()=>{
-       
+        for(const item in display){
+            row.push(
+                <>
+                <div className="items" style={{display:"flex",flexDirection:"row"}}>
+                <h6  style={{display:"inline"}}>{display[item]} : </h6>
+                <h6 style={{color:"grey"}}>{user[display[item]]}</h6>
+                </div>
+                </>
+            )
+
+        }
+        setcont(row);
     },[])
 
     return (
@@ -34,15 +48,19 @@ const Profile = () => {
                 <div className="header" style={{display:"flex",flexDirection:"column",alignItems:"center"}} >
                     <div className="wall" style={{backgroundColor: "grey", height: "100px" }}>
                     </div>
-
                     <img src={require("./../img/download.png")} style={{marginTop:"-10px"}}/>
                     <h3>{user.name}</h3>
                     <h4 style={{color:"grey"}}>@{user.user_name}</h4>
+                    
+                    <h5>following {user.following.length}</h5>
+                    <h5>followers {user.followers.length}</h5>
+                    <hr style={{width:"80%"}}/>
+                    {cont}
+                    <hr style={{width:"100%"}}/>
                 </div>
-                <Timeline type="ALL" />
             </div>
-            <Menu {...location.state} />
-
+            <Timeline type="user" username={user.user_name} />
+            {/* <Menu {...location.state} /> */}
         </div>
 
 

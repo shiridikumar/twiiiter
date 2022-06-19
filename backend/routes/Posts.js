@@ -44,5 +44,8 @@ router.get("/hashtag/:hashtag", (req, res) =>{
         res.status(200).send({message: "posts successfully gathered", posts: posts})
     })
 })
+router.post("/userid",(req,res)=>{
+    Posts.find({username:req.body.userid})
+})
 
 module.exports = router;

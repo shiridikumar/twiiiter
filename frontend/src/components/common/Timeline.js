@@ -38,9 +38,13 @@ const Timeline = (params) => {
       console.log(hashtag)
       api_link += hashtag
     }
+    else if(params.type=="user"){
+      api_link="http://localhost:4000/user/posts/userid/";
+      api_link+=params.username;
+    }
     else
       console.log("invalid parameters")
-
+    if(params.type!="user"){
     await axios.get(api_link).then(response => {
       const data = response.data.posts;
       console.log(data);
@@ -48,6 +52,17 @@ const Timeline = (params) => {
         row.push(<><Postcard name={data[i].name} user_name={data[i].username} tweettext={data[i].tweettext} url={data[i].url} /><hr style={{ color: "grey" }} /></>);
       }
     })
+  }
+  else{
+    await axios.post(api_link,{userid:params.username}).then(response => {
+      const data = response.data.posts;
+      console.log(data);
+      for (var i = 0; i < response.data.posts.length; i++) {
+        row.push(<><Postcard name={data[i].name} user_name={data[i].username} tweettext={data[i].tweettext} url={data[i].url} /><hr style={{ color: "grey" }} /></>);
+      }
+    })
+
+  }
     setcont(row);
   }, []);
 
